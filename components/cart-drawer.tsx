@@ -33,7 +33,7 @@ export function CartDrawer({ children }: CartDrawerProps) {
                   <div key={`${item.product.id}-${item.size}`} className="flex gap-4 p-4 border rounded-lg">
                     <div className="relative w-16 h-16 flex-shrink-0">
                       <Image
-                        src={item.product.image || "/placeholder.svg"}
+                        src={item.product.image_url || "/placeholder.svg"}
                         alt={item.product.name}
                         fill
                         className="object-cover rounded"

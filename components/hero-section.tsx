@@ -7,8 +7,8 @@ import { FadeIn } from "@/components/fade-in"
 export function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-white">
-      <div className="container px-4 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
+      <div className="container px-4 relative z-10 max-hero-width">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Content */}
           <div className="text-center lg:text-left space-y-12">
             <div className="space-y-8">

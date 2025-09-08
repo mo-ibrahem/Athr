@@ -123,4 +123,29 @@
   body {
     @apply bg-background text-foreground;
   }
+  
+  /* Ensure proper centering on wide screens */
+  .container {
+    @apply mx-auto;
+  }
+  
+  /* Max width constraints for ultra-wide screens */
+  .max-content-width {
+    max-width: 1400px;
+  }
+  
+  .max-hero-width {
+    max-width: 1200px;
+  }
+  
+  /* Ensure proper centering on ultra-wide screens */
+  @media (min-width: 1600px) {
+    .container {
+      @apply flex justify-center;
+    }
+    
+    .container > * {
+      @apply w-full;
+    }
+  }
 }

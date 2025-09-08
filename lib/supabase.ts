@@ -1,7 +1,8 @@
 import { createClient } from "@supabase/supabase-js"
 
-const supabaseUrl = "https://rjwpvxfpyzvvvrysusu.supabase.co"
-const supabaseAnonKey =
+// Use environment variables for better security
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://rjwpvxfpyzvvvrysusu.supabase.co"
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJqd3B2eGZweXp2dnZyeXN1ZXN1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTcwMjM5MjQsImV4cCI6MjA3MjU5OTkyNH0.avyRv93L-9Tu4LBcQzfIZKhfW7gX8F4o9AhEVaVi6Fo"
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey)

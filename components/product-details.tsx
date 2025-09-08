@@ -48,14 +48,66 @@ export function ProductDetails({ product }: ProductDetailsProps) {
     await new Promise((resolve) => setTimeout(resolve, 500))
     addItem(product, selectedSize, quantity)
     setIsAddingToCart(false)
-    alert("Added to cart!")
   }
 
   const handleBuyNow = async () => {
     setIsBuyingNow(true)
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-    alert(`Redirecting to payment for ${product.name} (${selectedSize})...`)
-    setIsBuyingNow(false)
+
+    try {
+      // Calculate price based on size
+      const actualPrice = getSizePrice(selectedSize)
+
+      // Prepare order data for Paymob
+      const orderData = {
+        amount: actualPrice,
+        currency: "EGP",
+        customer: {
+          first_name: "Customer", // You might want to get this from user input
+          last_name: "Name",
+          email: "customer@example.com", // You might want to get this from user input
+          phone: "+201234567890", // You might want to get this from user input
+        },
+        items: [
+          {
+            name: `${product.name} (${selectedSize})`,
+            amount: actualPrice,
+            quantity: quantity,
+            description: product.description,
+            image_url: product.image_url,
+          },
+        ],
+      }
+
+      console.log("Creating payment order for:", orderData)
+
+      // Create payment order (server-side processing)
+      const response = await fetch("/api/paymob/create-order", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(orderData),
+      })
+
+      if (!response.ok) {
+        const errorText = await response.text()
+        console.error("Payment order creation failed:", errorText)
+        throw new Error(`Failed to create payment order: ${errorText}`)
+      }
+
+      const responseData = await response.json()
+      console.log("Payment order created:", responseData)
+
+      const { paymentUrl } = responseData
+
+      // Redirect to Paymob payment page
+      window.location.href = paymentUrl
+    } catch (error) {
+      console.error("Buy now error:", error)
+      alert(`Payment processing failed: ${error instanceof Error ? error.message : "Unknown error"}`)
+    } finally {
+      setIsBuyingNow(false)
+    }
   }
 
   return (

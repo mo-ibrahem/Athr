@@ -32,8 +32,7 @@ export function AddToCartButton({ product, variant = "default", size = "default"
     addItem(product, selectedSize)
     setIsAdding(false)
 
-    // Show success message
-    alert("Added to cart!")
+    // Item added to cart successfully
   }
 
   return (

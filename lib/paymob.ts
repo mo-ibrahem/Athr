@@ -19,6 +19,8 @@ export interface PaymobOrderRequest {
     name: string
     amount: number
     quantity: number
+    description?: string
+    image_url?: string
   }>
 }
 

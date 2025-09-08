@@ -29,7 +29,7 @@ export default function RootLayout({
       <body className={`font-sans ${inter.variable} antialiased`}>
         <CartProvider>
           <Suspense fallback={null}>
-            <PageTransition>{children}</PageTransition>
+            {children}
           </Suspense>
         </CartProvider>
       </body>

@@ -123,6 +123,66 @@ const fallbackProducts: Product[] = [
     created_at: "2024-01-01T00:00:00Z",
     updated_at: "2024-01-01T00:00:00Z",
   },
+  {
+    id: "4",
+    name: "Pink Vibe",
+    slug: "pink-vibe",
+    description: "A romantic floral fragrance with rose and peony",
+    price: 319,
+    image_url:
+      "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/pink%20vibe%20first%20photo.png",
+    gallery_images: [
+      "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/pink%20vibe%20second%20photo.png",
+      "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/pink%20vibe.jpg",
+    ],
+    category: "floral",
+    brand: "ATHR",
+    in_stock: true,
+    featured: false,
+    sizes: [
+      { size: "30ml", price: 319, multiplier: 1 },
+      { size: "50ml", price: 469, multiplier: 1.5 },
+      { size: "100ml", price: 719, multiplier: 2.3 },
+    ],
+    notes: {
+      top: ["Rose", "Peony", "Freesia"],
+      middle: ["Jasmine", "Lily", "Magnolia"],
+      base: ["Musk", "Vanilla", "Sandalwood"],
+    },
+    ingredients: ["Alcohol", "Parfum", "Aqua"],
+    created_at: "2024-01-01T00:00:00Z",
+    updated_at: "2024-01-01T00:00:00Z",
+  },
+  {
+    id: "5",
+    name: "Tropix",
+    slug: "tropix",
+    description: "A tropical escape with coconut and exotic fruits",
+    price: 289,
+    image_url:
+      "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/tropix%20first%20photo.png",
+    gallery_images: [
+      "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/tropix%20second%20photo.png",
+      "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/tropix.jpg",
+    ],
+    category: "fruity",
+    brand: "ATHR",
+    in_stock: true,
+    featured: false,
+    sizes: [
+      { size: "30ml", price: 289, multiplier: 1 },
+      { size: "50ml", price: 429, multiplier: 1.5 },
+      { size: "100ml", price: 649, multiplier: 2.3 },
+    ],
+    notes: {
+      top: ["Coconut", "Pineapple", "Mango"],
+      middle: ["Passion Fruit", "Guava", "Papaya"],
+      base: ["Vanilla", "Sandalwood", "Amber"],
+    },
+    ingredients: ["Alcohol", "Parfum", "Aqua"],
+    created_at: "2024-01-01T00:00:00Z",
+    updated_at: "2024-01-01T00:00:00Z",
+  },
 ]
 
 export const products: Product[] = []
@@ -168,8 +228,6 @@ export async function getFeaturedProducts(): Promise<Product[]> {
 
 export async function getProductBySlug(slug: string): Promise<Product | null> {
   try {
-    throw new Error("Using fallback data with additional images")
-
     const supabase = await createClient()
     const { data, error } = await supabase.from("products").select("*").eq("slug", slug).maybeSingle()
 
@@ -180,6 +238,7 @@ export async function getProductBySlug(slug: string): Promise<Product | null> {
 
     return data || fallbackProducts.find((p) => p.slug === slug) || null
   } catch (error) {
+    console.error("Supabase connection failed, using fallback data:", error)
     return fallbackProducts.find((p) => p.slug === slug) || null
   }
 }

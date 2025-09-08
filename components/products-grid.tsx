@@ -5,6 +5,7 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { motion } from "framer-motion"
+import { StaggerReveal } from "@/components/stagger-reveal"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { createClient } from "@/lib/supabase/client"
@@ -18,62 +19,40 @@ const mockProducts: Product[] = [
   {
     id: "1",
     name: "Blue Vibe",
-    slug: "blue-vibe",
+    slug: "blue-vibe-aquatic",
     description: "A refreshing aquatic fragrance inspired by the Mediterranean breeze",
     price: 299,
     image_url:
       "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/blue%20vibe%20first%20photo.png",
+    gallery_images: [],
     category: "Aquatic",
     brand: "ATHR",
     in_stock: true,
     featured: true,
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
-    sizes: { "30ml": 299, "50ml": 449, "100ml": 699 },
+    sizes: ["30ml", "50ml", "100ml"],
     notes: { top: ["Bergamot", "Sea Salt"], middle: ["Jasmine", "Rose"], base: ["Musk", "Amber"] },
     ingredients: ["Alcohol", "Parfum", "Aqua"],
-    hover_image_url:
-      "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/athr%20third%20photo.png",
   },
   {
     id: "2",
     name: "Boje",
-    slug: "boje",
+    slug: "boje-amber-essence",
     description: "A warm amber fragrance with oriental spices",
     price: 349,
     image_url:
       "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/boje%20first%20photo.png",
+    gallery_images: [],
     category: "Oriental",
     brand: "ATHR",
     in_stock: true,
     featured: true,
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
-    sizes: { "30ml": 349, "50ml": 499, "100ml": 799 },
+    sizes: ["30ml", "50ml", "100ml"],
     notes: { top: ["Saffron", "Cardamom"], middle: ["Oud", "Rose"], base: ["Amber", "Sandalwood"] },
     ingredients: ["Alcohol", "Parfum", "Aqua"],
-    hover_image_url:
-      "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/athr%20third%20photo.png",
-  },
-  {
-    id: "3",
-    name: "Milka",
-    slug: "milka",
-    description: "A delicate floral bouquet with Egyptian jasmine",
-    price: 279,
-    image_url:
-      "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/milka%20first%20photo.png",
-    category: "Floral",
-    brand: "ATHR",
-    in_stock: true,
-    featured: false,
-    created_at: new Date().toISOString(),
-    updated_at: new Date().toISOString(),
-    sizes: { "30ml": 279, "50ml": 399, "100ml": 599 },
-    notes: { top: ["Jasmine", "Neroli"], middle: ["Rose", "Lily"], base: ["White Musk", "Vanilla"] },
-    ingredients: ["Alcohol", "Parfum", "Aqua"],
-    hover_image_url:
-      "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/athr%20third%20photo.png",
   },
   {
     id: "4",
@@ -83,17 +62,16 @@ const mockProducts: Product[] = [
     price: 319,
     image_url:
       "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/pink%20vibe%20first%20photo.png",
+    gallery_images: [],
     category: "Floral",
     brand: "ATHR",
     in_stock: true,
     featured: false,
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
-    sizes: { "30ml": 319, "50ml": 469, "100ml": 719 },
+    sizes: ["30ml", "50ml", "100ml"],
     notes: { top: ["Rose", "Peony"], middle: ["Jasmine", "Lily"], base: ["Musk", "Vanilla"] },
     ingredients: ["Alcohol", "Parfum", "Aqua"],
-    hover_image_url:
-      "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/athr%20third%20photo.png",
   },
   {
     id: "5",
@@ -103,36 +81,35 @@ const mockProducts: Product[] = [
     price: 289,
     image_url:
       "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/tropix%20first%20photo.png",
+    gallery_images: [],
     category: "Fruity",
     brand: "ATHR",
     in_stock: true,
     featured: false,
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
-    sizes: { "30ml": 289, "50ml": 429, "100ml": 649 },
+    sizes: ["30ml", "50ml", "100ml"],
     notes: { top: ["Coconut", "Pineapple"], middle: ["Mango", "Passion Fruit"], base: ["Vanilla", "Sandalwood"] },
     ingredients: ["Alcohol", "Parfum", "Aqua"],
-    hover_image_url:
-      "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/athr%20third%20photo.png",
   },
   {
-    id: "6",
-    name: "ATHR",
-    slug: "athr",
-    description: "The signature fragrance of our brand",
-    price: 399,
-    image_url: "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/1.png",
-    category: "Signature",
+    id: "3",
+    name: "Milka",
+    slug: "milka-floral-dream",
+    description: "A delicate floral bouquet with Egyptian jasmine",
+    price: 279,
+    image_url:
+      "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/milka%20first%20photo.png",
+    gallery_images: [],
+    category: "Floral",
     brand: "ATHR",
     in_stock: true,
-    featured: true,
+    featured: false,
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
-    sizes: { "30ml": 399, "50ml": 599, "100ml": 899 },
-    notes: { top: ["Bergamot", "Lemon"], middle: ["Lavender", "Geranium"], base: ["Vetiver", "Cedarwood"] },
+    sizes: ["30ml", "50ml", "100ml"],
+    notes: { top: ["Jasmine", "Neroli"], middle: ["Rose", "Lily"], base: ["White Musk", "Vanilla"] },
     ingredients: ["Alcohol", "Parfum", "Aqua"],
-    hover_image_url:
-      "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/athr%20third%20photo.png",
   },
 ]
 
@@ -181,7 +158,6 @@ export function ProductsGrid() {
     e.preventDefault()
     e.stopPropagation()
     addItem(product, "30ml", 1)
-    alert("Added to cart!")
   }
 
   if (loading) {
@@ -193,7 +169,7 @@ export function ProductsGrid() {
   }
 
   return (
-    <div className="space-y-12">
+    <div className="space-y-12 max-content-width mx-auto">
       {/* Minimal Toolbar */}
       <div className="flex items-center justify-between pb-8 border-b border-gray-200">
         <div>
@@ -218,88 +194,81 @@ export function ProductsGrid() {
       </div>
 
       {/* Clean Products Grid */}
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-12">
+      <StaggerReveal className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-12">
         {sortedProducts.map((product) => (
-          <div key={product.id} className="group">
-            <Link href={`/products/${product.slug}`} className="block">
-              {/* Product Image with Hover Transition */}
-              <div className="relative aspect-square mb-4 overflow-hidden bg-gray-50">
-                <motion.div
-                  className="absolute inset-0"
-                  initial={{ opacity: 1 }}
-                  whileHover={{ opacity: 0 }}
-                  transition={{ duration: 0.3, ease: "easeInOut" }}
-                >
-                  <Image
-                    src={product.image_url || "/placeholder.svg"}
-                    alt={product.name}
-                    fill
-                    className="object-cover"
-                    onError={(e) => {
-                      console.log("[v0] Default image failed to load:", product.image_url)
-                      e.currentTarget.src = "/placeholder.svg"
-                    }}
-                  />
-                </motion.div>
+  <motion.div 
+    key={product.id} 
+    className="group"
+    whileHover="hover"
+    initial="rest"
+    animate="rest"
+    transition={{ duration: 0.2, ease: "easeOut" }}
+  >
+    <Link href={`/products/${product.slug}`} className="block">
+      <div className="relative aspect-square mb-4 overflow-hidden bg-gray-50">
+        <motion.div
+          className="absolute inset-0"
+          variants={{
+            rest: { opacity: 1 },
+            hover: { opacity: 0 },
+          }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+        >
+          <Image
+            src={product.image_url || "/placeholder.svg"}
+            alt={product.name}
+            fill
+            className="object-cover"
+          />
+        </motion.div>
+        <motion.div
+          className="absolute inset-0"
+          variants={{
+            rest: { opacity: 0 },
+            hover: { opacity: 1 },
+          }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+        >
+          <Image
+            src="https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/athr%20third%20photo.png"
+            alt={`${product.name} hover`}
+            fill
+            className="object-cover"
+          />
+        </motion.div>
+        {!product.in_stock && (
+          <div className="absolute inset-0 bg-white/80 flex items-center justify-center">
+            <span className="text-xs text-gray-500 font-light">OUT OF STOCK</span>
+          </div>
+        )}
+      </div>
+    </Link>
 
-                <motion.div
-                  className="absolute inset-0"
-                  initial={{ opacity: 0 }}
-                  whileHover={{ opacity: 1 }}
-                  transition={{ duration: 0.3, ease: "easeInOut" }}
-                >
-                  <Image
-                    src="https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/athr%20third%20photo.png"
-                    alt={`${product.name} hover`}
-                    fill
-                    className="object-cover"
-                    onError={(e) => {
-                      console.log(
-                        "[v0] Hover image failed to load:",
-                        "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/athr%20third%20photo.png",
-                      )
-                      e.currentTarget.style.display = "none"
-                    }}
-                    onLoad={() => {
-                      console.log(
-                        "[v0] Hover image loaded successfully:",
-                        "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/athr%20third%20photo.png",
-                      )
-                    }}
-                  />
-                </motion.div>
-
-                {!product.in_stock && (
-                  <div className="absolute inset-0 bg-white/80 flex items-center justify-center">
-                    <span className="text-xs text-gray-500 font-light">OUT OF STOCK</span>
-                  </div>
-                )}
-              </div>
-
-              {/* Product Info */}
-              <div className="space-y-2">
-                <h3 className="text-sm font-light text-black group-hover:text-gray-600 transition-colors uppercase tracking-wide">
+            {/* Product Info */}
+            <div className="space-y-2">
+              <Link href={`/products/${product.slug}`}>
+                <h3 className="text-sm font-light text-black group-hover:text-gray-600 transition-colors uppercase tracking-wide cursor-pointer">
                   {product.name}
                 </h3>
+              </Link>
 
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-500 font-light">{formatPrice(product.price)}</span>
+              <div className="flex items-center justify-between">
+                <span className="text-sm text-gray-500 font-light">{formatPrice(product.price)}</span>
 
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="opacity-0 group-hover:opacity-100 transition-opacity text-xs font-light h-auto p-1 hover:bg-transparent hover:text-black"
-                    disabled={!product.in_stock}
-                    onClick={(e) => handleQuickAdd(e, product)}
-                  >
-                    ADD
-                  </Button>
-                </div>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="opacity-0 group-hover:opacity-100 transition-opacity text-xs font-light h-auto p-1 hover:bg-transparent hover:text-black"
+                  disabled={!product.in_stock}
+                  onClick={(e) => handleQuickAdd(e, product)}
+                >
+                  ADD
+                </Button>
               </div>
-            </Link>
-          </div>
+            </div>
+          </motion.div>
         ))}
-      </div>
+      </StaggerReveal>
     </div>
   )
 }

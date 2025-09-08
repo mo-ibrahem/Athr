@@ -60,6 +60,8 @@ export function CheckoutForm() {
           name: `${item.product.name} (${item.size})`,
           amount: item.actualPrice,
           quantity: item.quantity,
+          description: item.product.description,
+          image_url: item.product.image_url,
         })),
       }
 
