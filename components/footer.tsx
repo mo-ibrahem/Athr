@@ -84,8 +84,8 @@ export function Footer() {
             <h3 className="font-light text-black uppercase text-xs tracking-wide">Contact Info</h3>
             <div className="space-y-3 text-sm text-gray-500">
               <div>Cairo, Egypt</div>
-              <div>+20 123 456 7890</div>
-              <div>info@athr.com</div>
+              <div>+20 1023299187</div>
+              <div>athrscent@gmail.com</div>
             </div>
           </div>
         </div>

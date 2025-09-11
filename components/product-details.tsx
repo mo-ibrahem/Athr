@@ -117,6 +117,8 @@ export function ProductDetails({ product }: ProductDetailsProps) {
         <div className="space-y-3">
           <h1 className="text-2xl md:text-3xl font-light text-black uppercase tracking-wide">{product.name}</h1>
           <p className="text-sm text-gray-600 font-light leading-relaxed">{product.description}</p>
+          <p className="text-sm text-gray-800 font-meduim leading-relaxed">{product.insp}</p>
+
         </div>
 
         {/* Price */}
