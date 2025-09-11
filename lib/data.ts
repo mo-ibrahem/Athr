@@ -37,8 +37,8 @@ const fallbackProducts: Product[] = [
     id: "1",
     name: "Blue Vibe",
     slug: "blue-vibe-aquatic",
-    description: "A fresh aquatic fragrance capturing the essence of the Mediterranean breeze",
-    price: 299,
+    description: "A bold and sophisticated fragrance crafted for the modern man. It opens with a fresh burst of citrus and aromatic spices, instantly energizing the senses. The heart reveals elegant woods and subtle florals, adding depth and character, while warm amber and sensual musk create a powerful, long-lasting trail. The perfect blend of Bleu de Chanel and Sauvage Elixir",
+    price: 599,
     image_url:
       "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/blue%20vibe%20first%20photo.png",
     gallery_images: [
@@ -50,8 +50,8 @@ const fallbackProducts: Product[] = [
     in_stock: true,
     featured: true,
     sizes: [
-      { size: "30ml", price: 299, multiplier: 1 },
-      { size: "50ml", price: 449, multiplier: 1.5 },
+      { size: "30ml", price: 599, multiplier: 1 },
+      { size: "50ml", price: 599, multiplier: 1.5 },
       { size: "100ml", price: 699, multiplier: 2.3 },
     ],
     notes: {
@@ -67,8 +67,10 @@ const fallbackProducts: Product[] = [
     id: "2",
     name: "Boje Amber Essence",
     slug: "boje-amber-essence",
-    description: "A warm and sophisticated amber fragrance with oriental spices",
-    price: 349,
+    description: `A deliciously addictive fragrance that wraps you in warmth and sweetness. It opens with the soft, airy glow of toasted marshmallow, blending into creamy vanilla and a touch of sugar for irresistible indulgence. Hints of musk and woods balance the sweetness, leaving a sensual, cozy trail that lingers beautifully.
+
+Inspired by Kayali Boujee Marshmallow`,
+    price: 699,
     image_url:
       "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/boje%20first%20photo.png",
     gallery_images: [
@@ -80,8 +82,8 @@ const fallbackProducts: Product[] = [
     in_stock: true,
     featured: true,
     sizes: [
-      { size: "30ml", price: 349, multiplier: 1 },
-      { size: "50ml", price: 499, multiplier: 1.4 },
+      { size: "30ml", price: 699, multiplier: 1 },
+      { size: "50ml", price: 699, multiplier: 1.4 },
       { size: "100ml", price: 749, multiplier: 2.1 },
     ],
     notes: {
@@ -97,8 +99,10 @@ const fallbackProducts: Product[] = [
     id: "3",
     name: "Milka Floral Dream",
     slug: "milka-floral-dream",
-    description: "A delicate floral bouquet inspired by Egyptian gardens",
-    price: 279,
+    description: `A decadent symphony of sweetness and elegance. It opens with the rich warmth of vanilla, wrapped in a delicate veil of caramel and amber. As it settles, creamy milk notes melt into the heart, softening the richness and adding a comforting, irresistible smoothness. The base lingers with tonka and musk, leaving behind a sensual trail that’s both cozy and captivating
+
+The perfect blend of Kayali Vanilla 28 and Bianco Latte`,
+    price: 599,
     image_url:
       "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/milka%20first%20photo.png",
     gallery_images: [
@@ -110,8 +114,8 @@ const fallbackProducts: Product[] = [
     in_stock: true,
     featured: true,
     sizes: [
-      { size: "30ml", price: 279, multiplier: 1 },
-      { size: "50ml", price: 399, multiplier: 1.4 },
+      { size: "30ml", price: 599, multiplier: 1 },
+      { size: "50ml", price: 599, multiplier: 1.4 },
       { size: "100ml", price: 599, multiplier: 2.1 },
     ],
     notes: {
@@ -127,12 +131,14 @@ const fallbackProducts: Product[] = [
     id: "4",
     name: "Pink Vibe",
     slug: "pink-vibe",
-    description: "A romantic floral fragrance with rose and peony",
-    price: 319,
+    description: `A playful yet sophisticated fragrance that radiates confidence. Bursting with juicy berries and exotic fruits, it opens with an irresistible sweetness that instantly uplifts the mood. The heart blooms with delicate florals, adding a touch of elegance and charm, while soft woods and sensual musk create a lasting trail.
+
+The perfect blend of Bombshell and Burberry her`,
+    price: 599,
     image_url:
       "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/pink%20vibe%20first%20photo.png",
     gallery_images: [
-      "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/pink%20vibe%20second%20photo.png",
+      "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/Pink%20Vibe%20second%20photo.png ",
       "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/pink%20vibe.jpg",
     ],
     category: "floral",
@@ -140,8 +146,8 @@ const fallbackProducts: Product[] = [
     in_stock: true,
     featured: false,
     sizes: [
-      { size: "30ml", price: 319, multiplier: 1 },
-      { size: "50ml", price: 469, multiplier: 1.5 },
+      { size: "30ml", price: 599, multiplier: 1 },
+      { size: "50ml", price: 599, multiplier: 1.5 },
       { size: "100ml", price: 719, multiplier: 2.3 },
     ],
     notes: {
@@ -157,21 +163,23 @@ const fallbackProducts: Product[] = [
     id: "5",
     name: "Tropix",
     slug: "tropix",
-    description: "A tropical escape with coconut and exotic fruits",
-    price: 289,
+    description: `An irresistibly sensual fragrance that captures the essence of tropical allure. Opening with fresh burst of pineapple and a hint of sweetness, it quickly unfolds into a creamy blend of coconut and tonka bean, creating a warm, addictive heart. Deep woods and amber leave behind a seductive trail that lingers on the skin.
+
+Inspired by Le Beau Le Parfum by Jean Paul Gaultier`,
+    price: 599,
     image_url:
       "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/tropix%20first%20photo.png",
     gallery_images: [
       "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/tropix%20second%20photo.png",
-      "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/tropix.jpg",
+      "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/tropex.jpg",
     ],
     category: "fruity",
     brand: "ATHR",
     in_stock: true,
     featured: false,
     sizes: [
-      { size: "30ml", price: 289, multiplier: 1 },
-      { size: "50ml", price: 429, multiplier: 1.5 },
+      { size: "30ml", price: 599, multiplier: 1 },
+      { size: "50ml", price: 599, multiplier: 1.5 },
       { size: "100ml", price: 649, multiplier: 2.3 },
     ],
     notes: {

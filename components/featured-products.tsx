@@ -49,7 +49,7 @@ export function FeaturedProducts() {
       description: "A refreshing aquatic fragrance inspired by the Mediterranean breeze",
       price: 299,
       image_url:
-        "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/blue%20vibe%20first%20photo.png",
+        "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/bluevipecropped.jpeg",
       category: "aquatic",
       in_stock: true,
       slug: "blue-vibe-aquatic",
@@ -68,7 +68,7 @@ export function FeaturedProducts() {
       description: "A warm amber fragrance with oriental spices",
       price: 349,
       image_url:
-        "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/boje%20first%20photo.png",
+        "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/bojeeecropped.jpeg",
       category: "oriental",
       in_stock: true,
       slug: "boje-amber-essence",
@@ -87,7 +87,7 @@ export function FeaturedProducts() {
       description: "A delicate floral bouquet with jasmine and rose",
       price: 279,
       image_url:
-        "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/milka%20first%20photo.png",
+        "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/milkacropped.jpeg",
       category: "floral",
       in_stock: true,
       slug: "milka-floral-dream",
@@ -136,46 +136,46 @@ export function FeaturedProducts() {
           {/* Product Grid - max-w-5xl and mx-auto are removed from here */}
           <StaggerReveal className="grid md:grid-cols-3 gap-x-6 gap-y-12 w-full">
             {products.map((product) => (
-  <motion.div
-    key={product.id}
-    className="group"
-    whileHover="hover"
-    initial="rest"
-    animate="rest"
-    transition={{ duration: 0.3, ease: "easeOut" }}
-  >
-    <Link href={`/products/${product.slug}`} className="block">
-      <div className="relative aspect-square mb-4 overflow-hidden bg-gray-50">
-        <motion.div
-          className="absolute inset-0"
-          variants={{
-            rest: { opacity: 1 },
-            hover: { opacity: 0 },
-          }}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
-        >
-          <Image
-            src={product.image_url || "/placeholder.svg"}
-            alt={product.name}
-            fill
-            className="object-cover"
-          />
-        </motion.div>
-        <motion.div
-          className="absolute inset-0"
-          variants={{
-            rest: { opacity: 0 },
-            hover: { opacity: 1 },
-          }}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
-        >
-          <Image
-            src="https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/athr%20third%20photo.png"
-            alt={`${product.name} hover`}
-            fill
-            className="object-cover"
-          />
-        </motion.div>
+              <motion.div
+                key={product.id}
+                className="group"
+                whileHover="hover"
+                initial="rest"
+                animate="rest"
+                transition={{ duration: 0.3, ease: "easeOut" }}
+              >
+                <Link href={`/products/${product.slug}`} className="block">
+                  <div className="relative aspect-square mb-4 overflow-hidden bg-gray-50">
+                    <motion.div
+                      className="absolute inset-0"
+                      variants={{
+                        rest: { opacity: 1 },
+                        hover: { opacity: 0 },
+                      }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                    >
+                      <Image
+                        src={product.image_url || "/placeholder.svg"}
+                        alt={product.name}
+                        fill
+                        className="object-cover"
+                      />
+                    </motion.div>
+                    <motion.div
+                      className="absolute inset-0"
+                      variants={{
+                        rest: { opacity: 0 },
+                        hover: { opacity: 1 },
+                      }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                    >
+                      <Image
+                        src="https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/athr%20third%20photo.png"
+                        alt={`${product.name} hover`}
+                        fill
+                        className="object-cover"
+                      />
+                </motion.div>
         {!product.in_stock && (
           <div className="absolute inset-0 bg-white/80 flex items-center justify-center">
             <span className="text-xs text-gray-500 font-light">OUT OF STOCK</span>

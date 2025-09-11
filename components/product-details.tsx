@@ -13,7 +13,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
   const availableSizes =
     product.sizes?.length > 0
       ? product.sizes.map((sizeObj) => (typeof sizeObj === "string" ? sizeObj : sizeObj.size))
-      : ["30ml", "50ml", "100ml"]
+      : [ "50ml"]
   const [selectedSize, setSelectedSize] = useState(availableSizes[0])
   const [quantity, setQuantity] = useState(1)
   const [isAddingToCart, setIsAddingToCart] = useState(false)
@@ -138,7 +138,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
       <div className="border-t border-gray-100"></div>
 
       {/* Size Selection */}
-      <div className="space-y-4">
+      {/* <div className="space-y-4">
         <h3 className="text-sm font-light text-black uppercase tracking-wide">Size</h3>
         <div className="grid grid-cols-3 gap-2">
           {availableSizes.map((size) => (
@@ -155,7 +155,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
             </button>
           ))}
         </div>
-      </div>
+      </div> */}
 
       {/* Quantity */}
       <div className="space-y-4">

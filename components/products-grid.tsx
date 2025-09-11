@@ -23,7 +23,7 @@ const mockProducts: Product[] = [
     description: "A refreshing aquatic fragrance inspired by the Mediterranean breeze",
     price: 299,
     image_url:
-      "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/blue%20vibe%20first%20photo.png",
+      "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/bluevipecropped.jpeg",
     gallery_images: [],
     category: "Aquatic",
     brand: "ATHR",
@@ -42,7 +42,7 @@ const mockProducts: Product[] = [
     description: "A warm amber fragrance with oriental spices",
     price: 349,
     image_url:
-      "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/boje%20first%20photo.png",
+      "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/bojeeecropped.jpeg",
     gallery_images: [],
     category: "Oriental",
     brand: "ATHR",
@@ -61,7 +61,7 @@ const mockProducts: Product[] = [
     description: "A romantic floral fragrance with rose and peony",
     price: 319,
     image_url:
-      "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/pink%20vibe%20first%20photo.png",
+      "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/pinkcripped.jpeg",
     gallery_images: [],
     category: "Floral",
     brand: "ATHR",
@@ -80,7 +80,7 @@ const mockProducts: Product[] = [
     description: "A tropical escape with coconut and exotic fruits",
     price: 289,
     image_url:
-      "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/tropix%20first%20photo.png",
+      "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/tropix.jpeg",
     gallery_images: [],
     category: "Fruity",
     brand: "ATHR",
@@ -99,7 +99,7 @@ const mockProducts: Product[] = [
     description: "A delicate floral bouquet with Egyptian jasmine",
     price: 279,
     image_url:
-      "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/milka%20first%20photo.png",
+      "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/milkacropped.jpeg",
     gallery_images: [],
     category: "Floral",
     brand: "ATHR",

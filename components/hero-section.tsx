@@ -13,13 +13,13 @@ export function HeroSection() {
           <div className="text-center lg:text-left space-y-12">
             <div className="space-y-8">
               <SlideIn direction="up" delay={0.3}>
-                <h1 className="text-5xl md:text-7xl lg:text-8xl font-light text-balance leading-[0.9] tracking-tight">
+                <h1 className="text-5xl md:text-7xl lg:text-8xl mt-8 font-light text-balance leading-[0.9] tracking-tight">
                   <span className="text-black">ATHR</span>
                 </h1>
               </SlideIn>
 
               <FadeIn delay={0.4}>
-                <p className="text-lg text-gray-600 max-w-md text-pretty font-light">
+                <p className="text-lg text-gray-600  text-pretty font-light">
                   Egyptian perfumes crafted for sensual emotions and collective memories through the finest ingredients
                   and ancient traditions.
                 </p>
@@ -42,7 +42,7 @@ export function HeroSection() {
 
           <SlideIn direction="right" delay={0.4}>
             <div className="relative">
-              <div className="relative aspect-[4/5] max-w-lg mx-auto lg:max-w-xl">
+              <div className="relative mb-4 overflow-hidden bg-gray-50" style={{ aspectRatio: "1/1", minHeight: 250 }}>
                 <Image
                   src="https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/1.png"
                   alt="ATHR Perfume Collection"
