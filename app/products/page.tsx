@@ -14,10 +14,9 @@ export default function ProductsPage() {
           <section className="py-12 md:py-16">
             <div className="container px-4 max-content-width">
               <div className="text-center space-y-6">
-                <h1 className="text-3xl md:text-4xl font-light tracking-wide text-black uppercase">Perfumes</h1>
+                <h1 className="text-3xl md:text-4xl font-light tracking-wide text-black uppercase">Shop</h1>
                 <p className="text-sm text-gray-600 max-w-xl mx-auto font-light leading-relaxed">
-                  Discover our collection of authentic Egyptian fragrances, crafted with the finest ingredients and
-                  inspired by ancient traditions.
+                  Discover our collection , crafted with the finest ingredients.
                 </p>
               </div>
             </div>

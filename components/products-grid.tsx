@@ -21,7 +21,9 @@ const mockProducts: Product[] = [
     name: "Blue Vibe",
     slug: "blue-vibe-aquatic",
     description: "A refreshing aquatic fragrance inspired by the Mediterranean breeze",
-    price: 299,
+        insp:'s',
+
+    price: 599,
     image_url:
       "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/bluevipecropped.jpeg",
     gallery_images: [],
@@ -40,7 +42,9 @@ const mockProducts: Product[] = [
     name: "Boje",
     slug: "boje-amber-essence",
     description: "A warm amber fragrance with oriental spices",
-    price: 349,
+        insp:'s',
+
+    price: 699,
     image_url:
       "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/bojeeecropped.jpeg",
     gallery_images: [],
@@ -59,7 +63,9 @@ const mockProducts: Product[] = [
     name: "Pink Vibe",
     slug: "pink-vibe",
     description: "A romantic floral fragrance with rose and peony",
-    price: 319,
+        insp:'s',
+
+    price: 599,
     image_url:
       "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/pinkcripped.jpeg",
     gallery_images: [],
@@ -78,7 +84,9 @@ const mockProducts: Product[] = [
     name: "Tropix",
     slug: "tropix",
     description: "A tropical escape with coconut and exotic fruits",
-    price: 289,
+        insp:'s',
+
+    price: 599,
     image_url:
       "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/tropix.jpeg",
     gallery_images: [],
@@ -97,7 +105,8 @@ const mockProducts: Product[] = [
     name: "Milka",
     slug: "milka-floral-dream",
     description: "A delicate floral bouquet with Egyptian jasmine",
-    price: 279,
+    insp:'s',
+    price: 599,
     image_url:
       "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/milkacropped.jpeg",
     gallery_images: [],
@@ -194,55 +203,34 @@ export function ProductsGrid() {
       </div>
 
       {/* Clean Products Grid */}
-      <StaggerReveal className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-12">
-        {sortedProducts.map((product) => (
-  <motion.div 
-    key={product.id} 
-    className="group"
-    whileHover="hover"
-    initial="rest"
-    animate="rest"
-    transition={{ duration: 0.2, ease: "easeOut" }}
+<StaggerReveal className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-12">
+    {sortedProducts.map((product, idx) => (
+    <motion.div
+  key={product.id}
+  className="group"
+  // Remove custom, variants, initial, animate, exit
+  whileHover="hover"
+  transition={{ duration: 0.2, ease: "easeOut" }}
+>
+  <Link href={`/products/${product.slug}`} className="block">
+  <motion.div
+    className="relative aspect-square mb-4 overflow-hidden bg-gray-50"
+    whileHover={{ scale: 1.07 }}
+    transition={{ duration: 0.3, ease: "easeInOut" }}
   >
-    <Link href={`/products/${product.slug}`} className="block">
-      <div className="relative aspect-square mb-4 overflow-hidden bg-gray-50">
-        <motion.div
-          className="absolute inset-0"
-          variants={{
-            rest: { opacity: 1 },
-            hover: { opacity: 0 },
-          }}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
-        >
-          <Image
-            src={product.image_url || "/placeholder.svg"}
-            alt={product.name}
-            fill
-            className="object-cover"
-          />
-        </motion.div>
-        <motion.div
-          className="absolute inset-0"
-          variants={{
-            rest: { opacity: 0 },
-            hover: { opacity: 1 },
-          }}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
-        >
-          <Image
-            src="https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/athr%20third%20photo.png"
-            alt={`${product.name} hover`}
-            fill
-            className="object-cover"
-          />
-        </motion.div>
-        {!product.in_stock && (
-          <div className="absolute inset-0 bg-white/80 flex items-center justify-center">
-            <span className="text-xs text-gray-500 font-light">OUT OF STOCK</span>
-          </div>
-        )}
+    <Image
+      src={product.image_url || "/placeholder.svg"}
+      alt={product.name}
+      fill
+      className="object-cover transition-transform"
+    />
+    {!product.in_stock && (
+      <div className="absolute inset-0 bg-white/80 flex items-center justify-center">
+        <span className="text-xs text-gray-500 font-light">OUT OF STOCK</span>
       </div>
-    </Link>
+    )}
+  </motion.div>
+</Link>
 
             {/* Product Info */}
             <div className="space-y-2">
