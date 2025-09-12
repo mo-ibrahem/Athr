@@ -26,6 +26,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+     <link rel="icon" href="/atthr.svg" sizes="any" />
+
       <body className={`font-sans ${inter.variable} antialiased`}>
         <CartProvider>
           <Suspense fallback={null}>
