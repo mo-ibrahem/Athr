@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { formatPrice } from "@/lib/utils"
 import Image from "next/image"
+import { useRouter } from "next/navigation"
 
 interface CartDrawerProps {
   children: React.ReactNode
@@ -14,6 +15,11 @@ interface CartDrawerProps {
 
 export function CartDrawer({ children }: CartDrawerProps) {
   const { items, removeItem, updateQuantity, getTotalPrice, clearCart } = useCart()
+    const router = useRouter()
+
+    const handleCheckout = () => {
+    router.push("/checkout-fourm") // or "/checkout" if that's your route
+  }
 
   return (
     <Sheet>
@@ -23,8 +29,8 @@ export function CartDrawer({ children }: CartDrawerProps) {
           <SheetTitle>Shopping Cart</SheetTitle>
         </SheetHeader>
 
-        <div className="flex flex-col h-full">
-          <div className="flex-1 overflow-y-auto py-6">
+        <div className="flex flex-col px-6 h-full">
+          <div className="flex-1 overflow-y-auto  py-6">
             {items.length === 0 ? (
               <p className="text-center text-gray-500 mt-8">Your cart is empty</p>
             ) : (
@@ -79,23 +85,15 @@ export function CartDrawer({ children }: CartDrawerProps) {
             )}
           </div>
 
-          {items.length > 0 && (
+       {items.length > 0 && (
             <div className="border-t pt-4 space-y-4">
               <div className="flex justify-between text-lg font-semibold">
                 <span>Total: {formatPrice(getTotalPrice())}</span>
               </div>
 
-              <div className="space-y-2">
-                <Button className="w-full" size="lg">
-                  Checkout with Fawry
-                </Button>
-                <Button variant="outline" className="w-full bg-transparent" size="lg">
-                  Checkout with PayPal
-                </Button>
-                <Button variant="outline" className="w-full bg-transparent" size="lg">
-                  Checkout with Paymob
-                </Button>
-              </div>
+              <Button className="w-full" size="lg" onClick={handleCheckout}>
+                Checkout
+              </Button>
 
               <Button variant="ghost" onClick={clearCart} className="w-full text-red-500 hover:text-red-700">
                 Clear Cart
