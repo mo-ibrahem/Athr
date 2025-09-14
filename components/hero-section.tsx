@@ -6,9 +6,10 @@ import { FadeIn } from "@/components/fade-in"
 export function HeroSection() {
   return (
     <section
-      className="relative min-h-screen flex items-center justify-center bg-black"
+      className="relative flex min-h-screen items-start justify-center bg-black pt-32 md:pt-48" // Changed items-center to items-start and added padding-top
       style={{
-        backgroundImage: "url('https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/1.png')",
+        backgroundImage:
+          "url('https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/1.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
@@ -17,15 +18,18 @@ export function HeroSection() {
       <div className="absolute inset-0 bg-black/40" />
 
       {/* Content on top of the image */}
-      <div className="relative z-10 mb-[35rem] w-full flex flex-col items-center justify-center text-center px-4">
+      <div className="relative z-10 flex w-full flex-col items-center justify-center px-4 text-center">
+        {" "}
+        {/* Removed mb-[35rem] */}
         <SlideIn direction="up" delay={0.3}>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl mt-8 font-light text-white leading-[0.9] tracking-tight drop-shadow-lg">
+          <h1 className="mt-8 text-5xl font-light leading-[0.9] tracking-tight text-white drop-shadow-lg md:text-7xl lg:text-8xl">
             ATHR
           </h1>
         </SlideIn>
         <FadeIn delay={0.4}>
-          <p className="mt-8 text-lg md:text-2xl text-white font-light max-w-2xl mx-auto drop-shadow-lg">
-            High-quality, long-lasting, and unforgettable — our perfumes combine unique scents with a wide variety to suit every mood and style.
+          <p className="mx-auto mt-8 max-w-2xl text-lg font-light text-white drop-shadow-lg md:text-2xl">
+            High-quality, long-lasting, and unforgettable — our perfumes combine unique scents with a wide
+            variety to suit every mood and style.
           </p>
         </FadeIn>
         <SlideIn direction="up" delay={0.5}>
@@ -34,7 +38,7 @@ export function HeroSection() {
               asChild
               variant="outline"
               size="lg"
-              className="border-white text-white hover:bg-white hover:text-black transition-colors duration-300 px-8 py-6 text-sm font-light tracking-wide bg-transparent"
+              className="border-white bg-transparent px-8 py-6 text-sm font-light tracking-wide text-white transition-colors duration-300 hover:bg-white hover:text-black"
             >
               <Link href="/products">DISCOVER THE COLLECTION</Link>
             </Button>
