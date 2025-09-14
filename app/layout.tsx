@@ -15,7 +15,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Athr - Egyptian Perfumes",
   description:
-    "Discover the finest collection of authentic Egyptian perfumes, inspired by ancient traditions and crafted with premium ingredients.",
+    "Leave a lasting impression with Athr's exquisite Egyptian perfumes. Crafted from the finest ingredients, our scents evoke the rich heritage and mystique of Egypt. Discover your signature fragrance today.",
   generator: "v0.app",
 }
 

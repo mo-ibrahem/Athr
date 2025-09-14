@@ -3,11 +3,9 @@ export function cn(...inputs: (string | undefined | null | boolean)[]) {
 }
 
 export function formatPrice(price: number): string {
-  return new Intl.NumberFormat("en-EG", {
-    style: "currency",
-    currency: "EGP",
+  return `${new Intl.NumberFormat("en-EG", {
     minimumFractionDigits: 0,
-  }).format(price)
+  }).format(price)} EGP`
 }
 
 export function calculateDiscount(originalPrice: number, currentPrice: number): number {

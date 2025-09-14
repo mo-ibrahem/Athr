@@ -52,9 +52,7 @@ const fallbackProducts: Product[] = [
     in_stock: true,
     featured: true,
     sizes: [
-      { size: "30ml", price: 599, multiplier: 1 },
       { size: "50ml", price: 599, multiplier: 1.5 },
-      { size: "100ml", price: 699, multiplier: 2.3 },
     ],
     notes: {
       top: ["Bergamot", "Sea Salt", "Lemon"],
@@ -87,9 +85,7 @@ const fallbackProducts: Product[] = [
     in_stock: true,
     featured: true,
     sizes: [
-      { size: "30ml", price: 699, multiplier: 1 },
       { size: "50ml", price: 699, multiplier: 1.4 },
-      { size: "100ml", price: 749, multiplier: 2.1 },
     ],
     notes: {
       top: ["Saffron", "Cardamom", "Orange"],
@@ -123,9 +119,7 @@ const fallbackProducts: Product[] = [
     in_stock: true,
     featured: true,
     sizes: [
-      { size: "30ml", price: 599, multiplier: 1 },
       { size: "50ml", price: 599, multiplier: 1.4 },
-      { size: "100ml", price: 599, multiplier: 2.1 },
     ],
     notes: {
       top: ["Peony", "Lychee", "Freesia"],
@@ -157,9 +151,7 @@ const fallbackProducts: Product[] = [
     in_stock: true,
     featured: false,
     sizes: [
-      { size: "30ml", price: 599, multiplier: 1 },
       { size: "50ml", price: 599, multiplier: 1.5 },
-      { size: "100ml", price: 719, multiplier: 2.3 },
     ],
     notes: {
       top: ["Rose", "Peony", "Freesia"],
@@ -189,9 +181,7 @@ const fallbackProducts: Product[] = [
     in_stock: true,
     featured: false,
     sizes: [
-      { size: "30ml", price: 599, multiplier: 1 },
       { size: "50ml", price: 599, multiplier: 1.5 },
-      { size: "100ml", price: 649, multiplier: 2.3 },
     ],
     notes: {
       top: ["Coconut", "Pineapple", "Mango"],
