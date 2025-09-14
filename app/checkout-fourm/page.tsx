@@ -199,12 +199,12 @@ ${items.map(item =>
                 ))}
                 {paymentMethod === "vodacash" && (
                   <div className="text-center text-sm text-gray-700 bg-yellow-50 p-2 rounded">
-                    Send to: <span className="font-semibold">01001234567</span>
+                    Send to: <span className="font-semibold">01023299187</span>
                   </div>
                 )}
                 {paymentMethod === "instapay" && (
                   <div className="text-center text-sm text-gray-700 bg-blue-50 p-2 rounded">
-                    Send to: <span className="font-semibold">01007654321</span>
+                    Send to: <span className="font-semibold">01023299187</span>
                   </div>
                 )}
               </div>
