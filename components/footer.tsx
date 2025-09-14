@@ -91,7 +91,7 @@ export function Footer() {
         </div>
 
         <div className="border-t border-gray-100 mt-12 pt-8 text-center text-xs text-gray-400">
-          <p>&copy; 2024 ATHR. All rights reserved.</p>
+          <p>&copy; 2025 ATHR. All rights reserved.</p>
         </div>
       </div>
     </footer>
