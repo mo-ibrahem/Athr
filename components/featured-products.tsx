@@ -5,12 +5,35 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { motion } from "framer-motion"
-import { StaggerReveal } from "@/components/stagger-reveal"
+// No longer need StaggerReveal, as we'll handle staggering with variants
 import { Button } from "@/components/ui/button"
 import { createClient } from "@/lib/supabase/client"
 import { formatPrice } from "@/lib/utils"
 import { useCart } from "@/lib/cart-context"
 import type { Product } from "@/lib/types"
+
+// Define animation variants for the container and its children
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15, // Delay between each child's animation
+    },
+  },
+}
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut",
+    },
+  },
+}
 
 export function FeaturedProducts() {
   const [products, setProducts] = useState<Product[]>([])
@@ -29,8 +52,12 @@ export function FeaturedProducts() {
           return
         }
 
-        console.log("[v0] Fetched featured products:", data)
-        setProducts(getFallbackProducts())
+        // Check if data is empty, if so, use fallback
+        if (!data || data.length === 0) {
+          setProducts(getFallbackProducts())
+        } else {
+          setProducts(data)
+        }
       } catch (error) {
         console.error("[v0] Error fetching featured products:", error)
         setProducts(getFallbackProducts())
@@ -47,8 +74,7 @@ export function FeaturedProducts() {
       id: "1",
       name: "Blue Vibe",
       description: "A refreshing aquatic fragrance inspired by the Mediterranean breeze",
-            insp:'s',
-
+      insp: "s",
       price: 599,
       image_url:
         "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/bluevipecropped.jpeg",
@@ -68,8 +94,7 @@ export function FeaturedProducts() {
       id: "2",
       name: "Boje",
       description: "A warm amber fragrance with oriental spices",
-            insp:'s',
-
+      insp: "s",
       price: 699,
       image_url:
         "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/bojeeecropped.jpeg",
@@ -89,7 +114,7 @@ export function FeaturedProducts() {
       id: "3",
       name: "Milka",
       description: "A delicate floral bouquet with jasmine and rose",
-      insp:'s',
+      insp: "s",
       price: 599,
       image_url:
         "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/milkacropped.jpeg",
@@ -128,7 +153,6 @@ export function FeaturedProducts() {
   return (
     <section className="py-20 bg-white">
       <div className="container px-4">
-        {/* This new wrapper div groups and centers the entire content block */}
         <div className="max-w-5xl mx-auto flex flex-col items-center">
           {/* Header */}
           <div className="text-center space-y-4 mb-16">
@@ -138,59 +162,61 @@ export function FeaturedProducts() {
             </p>
           </div>
 
-          {/* Product Grid - max-w-5xl and mx-auto are removed from here */}
-          <StaggerReveal className="grid md:grid-cols-3 gap-x-6 gap-y-12 w-full">
-  {products.map((product) => (
-    <motion.div
-      key={product.id}
-      className="group"
-      initial="rest"
-      animate="rest"
-      transition={{ duration: 0.3, ease: "easeOut" }}
-    >
-      <Link href={`/products/${product.slug}`} className="block">
-        <motion.div
-          className="relative aspect-square mb-4 overflow-hidden bg-gray-50"
-          whileHover={{ scale: 1.07 }}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
-        >
-          <Image
-            src={product.image_url || "/placeholder.svg"}
-            alt={product.name}
-            fill
-            className="object-cover"
-          />
-          {!product.in_stock && (
-            <div className="absolute inset-0 bg-white/80 flex items-center justify-center">
-              <span className="text-xs text-gray-500 font-light">OUT OF STOCK</span>
-            </div>
-          )}
-        </motion.div>
+          {/* Product Grid - Replaced StaggerReveal with a motion.div */}
+          <motion.div
+            className="grid md:grid-cols-3 gap-x-6 gap-y-12 w-full"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }} // Animate when 20% of the grid is in view, and only once
+          >
+            {products.map((product) => (
+              <motion.div
+                key={product.id}
+                className="group"
+                variants={itemVariants} // Children inherit and animate based on the parent's state
+              >
+                <Link href={`/products/${product.slug}`} className="block">
+                  <motion.div
+                    className="relative aspect-square mb-4 overflow-hidden bg-gray-50"
+                    whileHover={{ scale: 1.07 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                  >
+                    <Image
+                      src={product.image_url || "/placeholder.svg"}
+                      alt={product.name}
+                      fill
+                      className="object-cover"
+                    />
+                    {!product.in_stock && (
+                      <div className="absolute inset-0 bg-white/80 flex items-center justify-center">
+                        <span className="text-xs text-gray-500 font-light">OUT OF STOCK</span>
+                      </div>
+                    )}
+                  </motion.div>
 
-        {/* Product Info */}
-        <div className="space-y-2">
-          <h3 className="text-sm font-light text-black group-hover:text-gray-600 transition-colors uppercase tracking-wide">
-            {product.name}
-          </h3>
-
-          <div className="flex items-center justify-between">
-            <span className="text-sm text-gray-500 font-light">{formatPrice(product.price)}</span>
-
-            <Button
-              variant="ghost"
-              size="sm"
-              className="opacity-0 group-hover:opacity-100 transition-opacity text-xs font-light h-auto p-1 hover:bg-transparent hover:text-black"
-              disabled={!product.in_stock}
-              onClick={(e) => handleQuickAdd(e, product)}
-            >
-              ADD
-            </Button>
-          </div>
-        </div>
-      </Link>
-    </motion.div>
-  ))}
-</StaggerReveal>
+                  {/* Product Info */}
+                  <div className="space-y-2">
+                    <h3 className="text-sm font-light text-black group-hover:text-gray-600 transition-colors uppercase tracking-wide">
+                      {product.name}
+                    </h3>
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-gray-500 font-light">{formatPrice(product.price)}</span>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="opacity-0 group-hover:opacity-100 transition-opacity text-xs font-light h-auto p-1 hover:bg-transparent hover:text-black"
+                        disabled={!product.in_stock}
+                        onClick={(e) => handleQuickAdd(e, product)}
+                      >
+                        ADD
+                      </Button>
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </motion.div>
 
           {/* "View All" Button */}
           <div className="text-center mt-16">

@@ -174,7 +174,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
       </div>
 
       {/* Features */}
-      <div className="grid grid-cols-1 gap-4 pt-4">
+      {/* <div className="grid grid-cols-1 gap-4 pt-4">
         <div className="flex items-center justify-between py-2 border-b border-gray-100">
           <span className="text-sm font-light text-black">Free Shipping</span>
           <span className="text-xs text-gray-500 font-light">On orders over EGP 500</span>
@@ -187,7 +187,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
           <span className="text-sm font-light text-black">Easy Returns</span>
           <span className="text-xs text-gray-500 font-light">30-day return policy</span>
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }

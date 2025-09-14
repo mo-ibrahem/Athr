@@ -38,7 +38,7 @@ const fallbackProducts: Product[] = [
     name: "Blue Vibe",
     slug: "blue-vibe-aquatic",
     description: "A bold and sophisticated fragrance crafted for the modern man. It opens with a fresh burst of citrus and aromatic spices, instantly energizing the senses. The heart reveals elegant woods and subtle florals, adding depth and character, while warm amber and sensual musk create a powerful, long-lasting trail.",
-    insp:"the perfect blend of Bleu de Chanel and Dior Sauvage elixir",
+    insp:"The perfect blend of Bleu de Chanel and Sauvage Elixir",
     price: 599,
     image_url:
       "https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/blue%20vibe.jpg",
