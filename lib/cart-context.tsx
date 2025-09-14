@@ -24,14 +24,15 @@ const CartContext = createContext<CartContextType | undefined>(undefined)
 
 const SIZE_MULTIPLIERS: Record<string, number> = {
   "30ml": 1,
-  "50ml": 1.5,
-  "100ml": 2.5,
+  "50ml": 1,
+  "100ml": 1,
 }
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([])
 
-  useEffect(() => {
+ useEffect(() => {
+  if (typeof window !== "undefined") {
     const savedCart = localStorage.getItem("cart")
     if (savedCart) {
       try {
@@ -40,7 +41,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
         console.error("Failed to load cart from localStorage:", error)
       }
     }
-  }, [])
+  }
+}, [])
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(items))

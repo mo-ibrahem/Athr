@@ -14,14 +14,15 @@ export function HeroSection() {
             <div className="space-y-8">
               <SlideIn direction="up" delay={0.3}>
                 <h1 className="text-5xl md:text-7xl lg:text-8xl mt-8 font-light text-balance leading-[0.9] tracking-tight">
-                  <span className="text-black">ATHR</span>
+                  <span className="text-black"> ATHR </span>
                 </h1>
               </SlideIn>
 
               <FadeIn delay={0.4}>
                 <p className="text-lg text-gray-600  text-pretty font-light">
-                  Egyptian perfumes crafted for sensual emotions and collective memories through the finest ingredients
-                  and ancient traditions.
+                 
+
+              High-quality, long-lasting, and unforgettable — our perfumes combine unique scents with a wide variety to suit every mood and style.
                 </p>
               </FadeIn>
             </div>

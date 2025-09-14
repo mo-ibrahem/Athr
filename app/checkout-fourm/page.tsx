@@ -117,49 +117,143 @@ ${items.map(item =>
           {/* Left: Cart and Form */}
           <div className="flex-1 space-y-8">
             <div>
-              <h3 className="text-lg font-light text-black mb-2">Your Order</h3>
-              {items.length === 0 ? (
-                <p className="text-sm text-gray-500">Your cart is empty.</p>
-              ) : (
-                <ul className="divide-y divide-gray-100 mb-4">
-                  {items.map((item, idx) => (
-                    <li key={idx} className="py-2 flex items-center gap-4">
-                      <div className="relative w-24 h-24 flex-shrink-0 rounded overflow-hidden bg-gray-100 border">
-                        <img
-                          src={item.product.image_url || "/placeholder.svg"}
-                          alt={item.product.name}
-                          className="object-cover w-full h-full"
-                        />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <span className="text-sm text-black">
-                          {item.product.name} <span className="text-gray-400">({item.size})</span> × {item.quantity}
-                        </span>
-                      </div>
-                      <span className="text-sm text-gray-500">
-                        {item.actualPrice * item.quantity} EGP
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              )}
+  <h3 className="text-lg font-light text-black mb-2">Your Order</h3>
+  {items.length === 0 ? (
+    <p className="text-sm text-gray-500">Your cart is empty.</p>
+  ) : (
+    <>
+      <ul className="divide-y divide-gray-100 mb-4">
+        {items.map((item, idx) => (
+          <li key={idx} className="py-2 flex items-center gap-4">
+            <div className="relative w-24 h-24 flex-shrink-0 rounded overflow-hidden bg-gray-100 border">
+              <img
+                src={item.product.image_url || "/placeholder.svg"}
+                alt={item.product.name}
+                className="object-cover w-full h-full"
+              />
             </div>
-            <form onSubmit={handleSubmit} className="w-full max-w-md bg-white p-8 rounded-lg shadow space-y-6">
-              <h2 className="text-xl font-light text-black mb-4">Checkout</h2>
-              <input name="name" type="text" required placeholder="Full Name" className="w-full border px-3 py-2 rounded text-sm" value={form.name} onChange={handleChange} />
-              <input name="email" type="email" required placeholder="Email" className="w-full border px-3 py-2 rounded text-sm" value={form.email} onChange={handleChange} />
-              <input name="phone" type="tel" required placeholder="Phone" className="w-full border px-3 py-2 rounded text-sm" value={form.phone} onChange={handleChange} />
-              <input name="country" type="text" required placeholder="Country" className="w-full border px-3 py-2 rounded text-sm" value={form.country} onChange={handleChange} />
-              <input name="city" type="text" required placeholder="City" className="w-full border px-3 py-2 rounded text-sm" value={form.city} onChange={handleChange} />
-              <input name="street" type="text" required placeholder="Street Address" className="w-full border px-3 py-2 rounded text-sm" value={form.street} onChange={handleChange} />
-              <input name="building" type="text" placeholder="Building" className="w-full border px-3 py-2 rounded text-sm" value={form.building} onChange={handleChange} />
-              <input name="floor" type="text" placeholder="Floor" className="w-full border px-3 py-2 rounded text-sm" value={form.floor} onChange={handleChange} />
-              <input name="apartment" type="text" placeholder="Apartment" className="w-full border px-3 py-2 rounded text-sm" value={form.apartment} onChange={handleChange} />
-              <textarea name="notes" placeholder="Order notes (optional)" className="w-full border px-3 py-2 rounded text-sm" value={form.notes} onChange={handleChange} />
-              <button type="submit" className="w-full bg-black text-white py-2 rounded font-light" disabled={loading}>
-                {loading ? "Sending..." : "Place Order"}
-              </button>
-            </form>
+            <div className="flex-1 min-w-0">
+              <span className="text-sm text-black">
+                {item.product.name} <span className="text-gray-400">({item.size})</span> × {item.quantity}
+              </span>
+            </div>
+            <span className="text-sm text-gray-500">
+              {item.actualPrice * item.quantity} EGP
+            </span>
+          </li>
+        ))}
+      </ul>
+      {/* Delivery Fee */}
+      <div className="flex items-center justify-between text-sm py-2">
+        <span className="text-gray-600">Delivery</span>
+        <span className="font-semibold text-black bg-yellow-100 px-2 py-1 rounded">80 EGP</span>
+      </div>
+      {/* Total */}
+      <div className="flex items-center justify-between text-base font-medium py-2 border-t mt-2">
+        <span className="text-black">Total</span>
+        <span className="text-black">
+          {items.reduce((sum, item) => sum + item.actualPrice * item.quantity, 0) + 80} EGP
+        </span>
+      </div>
+    </>
+  )}
+</div>
+            <form onSubmit={handleSubmit} className="w-full max-w-md bg-white p-8 rounded-xl shadow space-y-6">
+  <h2 className="text-xl font-light text-black mb-4">Checkout</h2>
+  <input
+    name="name"
+    type="text"
+    required
+    placeholder="Full Name"
+    className="w-full border border-gray-300 focus:border-black focus:ring-2 focus:ring-black/10 bg-gray-50 px-4 py-3 rounded-none transition-all text-sm outline-none"
+    value={form.name}
+    onChange={handleChange}
+  />
+  <input
+    name="email"
+    type="email"
+    required
+    placeholder="Email"
+    className="w-full border border-gray-300 focus:border-black focus:ring-2 focus:ring-black/10 bg-gray-50 px-4 py-3 rounded-none transition-all text-sm outline-none"
+    value={form.email}
+    onChange={handleChange}
+  />
+  <input
+    name="phone"
+    type="tel"
+    required
+    placeholder="Phone"
+    className="w-full border border-gray-300 focus:border-black focus:ring-2 focus:ring-black/10 bg-gray-50 px-4 py-3 rounded-none transition-all text-sm outline-none"
+    value={form.phone}
+    onChange={handleChange}
+  />
+  <input
+    name="country"
+    type="text"
+    required
+    placeholder="Country"
+    className="w-full border border-gray-300 focus:border-black focus:ring-2 focus:ring-black/10 bg-gray-50 px-4 py-3 rounded-none transition-all text-sm outline-none"
+    value={form.country}
+    onChange={handleChange}
+  />
+  <input
+    name="city"
+    type="text"
+    required
+    placeholder="City"
+    className="w-full border border-gray-300 focus:border-black focus:ring-2 focus:ring-black/10 bg-gray-50 px-4 py-3 rounded-none transition-all text-sm outline-none"
+    value={form.city}
+    onChange={handleChange}
+  />
+  <input
+    name="street"
+    type="text"
+    required
+    placeholder="Street Address"
+    className="w-full border border-gray-300 focus:border-black focus:ring-2 focus:ring-black/10 bg-gray-50 px-4 py-3 rounded-none transition-all text-sm outline-none"
+    value={form.street}
+    onChange={handleChange}
+  />
+  <input
+    name="building"
+    type="text"
+    placeholder="Building"
+    className="w-full border border-gray-300 focus:border-black focus:ring-2 focus:ring-black/10 bg-gray-50 px-4 py-3 rounded-none transition-all text-sm outline-none"
+    value={form.building}
+    onChange={handleChange}
+  />
+  <input
+    name="floor"
+    type="text"
+    placeholder="Floor"
+    className="w-full border border-gray-300 focus:border-black focus:ring-2 focus:ring-black/10 bg-gray-50 px-4 py-3 rounded-none transition-all text-sm outline-none"
+    value={form.floor}
+    onChange={handleChange}
+  />
+  <input
+    name="apartment"
+    type="text"
+    placeholder="Apartment"
+    className="w-full border border-gray-300 focus:border-black focus:ring-2 focus:ring-black/10 bg-gray-50 px-4 py-3 rounded-none transition-all text-sm outline-none"
+    value={form.apartment}
+    onChange={handleChange}
+  />
+  <textarea
+    name="notes"
+    placeholder="Order notes (optional)"
+    className="w-full border border-gray-300 focus:border-black focus:ring-2 focus:ring-black/10 bg-gray-50 px-4 py-3 rounded-none transition-all text-sm outline-none resize-none"
+    value={form.notes}
+    onChange={handleChange}
+    rows={3}
+  />
+  <button
+    type="submit"
+    className="w-full bg-black text-white py-3 rounded-none font-light text-base hover:bg-gray-900 transition-all"
+    disabled={loading}
+  >
+    {loading ? "Sending..." : "Place Order"}
+  </button>
+</form>
           </div>
           {/* Right: Modern Payment Options */}
           <div className="w-full md:w-80 flex flex-col justify-center">

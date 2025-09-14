@@ -134,7 +134,7 @@ export function FeaturedProducts() {
           <div className="text-center space-y-4 mb-16">
             <h2 className="text-2xl font-light text-black uppercase tracking-wide">Featured Collection</h2>
             <p className="text-sm text-gray-500 font-light max-w-2xl mx-auto">
-              Discover our most beloved perfumes, each telling a unique story of Egyptian heritage and luxury.
+              Discover our most beloved perfumes, each telling a unique story.
             </p>
           </div>
 
