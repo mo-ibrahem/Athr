@@ -69,7 +69,7 @@ Floor: ${form.floor}
 Apartment: ${form.apartment}
 Notes: ${form.notes}
 
-Payment Method: ${paymentMethod === "cod" ? "Pay on Delivery" : paymentMethod === "vodacash" ? "Vodacash" : "Instapay"}
+Payment Method: ${paymentMethod === "cod" ? "Cash On Delivery" : paymentMethod === "vodacash" ? "Vodacash" : "Instapay"}
 ${paymentMethod === "vodacash" ? "Vodacash Number: 01001234567" : ""}
 ${paymentMethod === "instapay" ? "Instapay Number: 01007654321" : ""}
 
@@ -146,13 +146,13 @@ ${items.map(item =>
       {/* Delivery Fee */}
       <div className="flex items-center justify-between text-sm py-2">
         <span className="text-gray-600">Delivery</span>
-        <span className="font-semibold text-black bg-yellow-100 px-2 py-1 rounded">80 EGP</span>
+        <span className="font-semibold text-black bg-yellow-100 px-2 py-1 rounded">70 EGP</span>
       </div>
       {/* Total */}
       <div className="flex items-center justify-between text-base font-medium py-2 border-t mt-2">
         <span className="text-black">Total</span>
         <span className="text-black">
-          {items.reduce((sum, item) => sum + item.actualPrice * item.quantity, 0) + 80} EGP
+          {items.reduce((sum, item) => sum + item.actualPrice * item.quantity, 0) + 70} EGP
         </span>
       </div>
     </>
