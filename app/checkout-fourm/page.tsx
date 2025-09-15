@@ -261,7 +261,7 @@ ${items.map(item =>
               <h3 className="text-lg font-light text-black mb-4 text-center">Payment Method</h3>
               <div className="space-y-4">
                 {[
-                  { value: "cod", label: "Cash nn Delivery", icon: PaymentIcons.cod },
+                  { value: "cod", label: "Cash on Delivery", icon: PaymentIcons.cod },
                   { value: "vodacash", label: "Vodacash", icon: PaymentIcons.vodacash, phone: "01001234567", color: "border-red-400" },
                   { value: "instapay", label: "Instapay", icon: PaymentIcons.instapay, phone: "01007654321", color: "border-blue-400" },
                 ].map((method) => (
