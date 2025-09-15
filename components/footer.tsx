@@ -9,8 +9,7 @@ export function Footer() {
           <div className="space-y-4">
             <span className="font-light text-xl text-black uppercase tracking-wide">ATHR</span>
             <p className="text-sm text-gray-500 max-w-xs">
-              Egyptian perfumes crafted for sensual emotions and collective memories through the finest ingredients and ancient traditions.
-            </p>
+High-quality, long-lasting, and unforgettable — our perfumes combine unique scents with a wide variety to suit every mood and style.            </p>
             <div className="flex space-x-4">
               <Link href="#" className="hover:text-black transition-colors text-gray-400">
                 <span className="sr-only">Facebook</span>

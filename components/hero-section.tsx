@@ -6,21 +6,15 @@ import { FadeIn } from "@/components/fade-in"
 export function HeroSection() {
   return (
     <section
-      className="relative flex min-h-screen items-start justify-center bg-black pt-32 md:pt-48" // Changed items-center to items-start and added padding-top
-      style={{
-        backgroundImage:
-          "url('https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/1.png')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
+      className="relative flex min-h-screen items-start justify-center bg-black bg-cover bg-center pt-32 md:pt-48 
+                 bg-[url('https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/1080-1920%20photo.png')] 
+                 md:bg-[url('https://xjrukeinsiskpwjekigc.supabase.co/storage/v1/object/public/product-images/1.png')]"
     >
       {/* Overlay for darkening the image */}
       <div className="absolute inset-0 bg-black/40" />
 
       {/* Content on top of the image */}
       <div className="relative z-10 flex w-full flex-col items-center justify-center px-4 text-center">
-        {" "}
-        {/* Removed mb-[35rem] */}
         <SlideIn direction="up" delay={0.3}>
           <h1 className="mt-8 text-5xl font-light leading-[0.9] tracking-tight text-white drop-shadow-lg md:text-7xl lg:text-8xl">
             ATHR
