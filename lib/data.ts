@@ -32,7 +32,7 @@ export const categories: Category[] = [
   },
 ]
 
-const fallbackProducts: Product[] = [
+export const fallbackProducts: Product[] = [
   {
     id: "1",
     name: "Blue Vibe",

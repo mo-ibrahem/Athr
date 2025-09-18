@@ -9,6 +9,38 @@ import { SlideIn } from "@/components/slide-in"
 import { getProductBySlug, getProductsByCategory } from "@/lib/data"
 import { PageTransition } from "@/components/page-transition"
 
+import type { Metadata } from 'next';
+import { fallbackProducts } from "@/lib/data";
+
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const product = fallbackProducts.find(p => p.slug === params.slug);
+
+  if (!product) {
+    return { title: "Product not found" };
+  }
+
+  // Create the openGraph object in a separate variable
+  // This satisfies TypeScript while allowing custom properties
+  const openGraphData = {
+    title: product.name,
+    description: product.description,
+    url: `https://www.athreg.com/products/${product.slug}`,
+    images: [{ url: product.image_url }],
+    type: 'website',
+    'product:brand': product.brand,
+    'product:availability': product.in_stock ? 'in stock' : 'out of stock',
+    'product:condition': 'new',
+    'product:price:amount': product.price.toString(),
+    'product:price:currency': 'EGP',
+  };
+
+  return {
+    title: product.name,
+    description: product.description,
+    openGraph: openGraphData,
+  };
+}
+
 interface ProductPageProps {
   params: {
     slug: string

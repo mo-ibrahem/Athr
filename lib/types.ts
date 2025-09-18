@@ -1,15 +1,23 @@
+// File: lib/types.ts
+
+// 1. ADD THIS NEW INTERFACE for a consistent size/price structure
+export interface ProductSize {
+  size: string;
+  price: number;
+}
+
 export interface Product {
   id: string
   name: string
   slug: string
   description: string
   insp: string
-  price: number
+  price: number // This acts as the default/base price
   category: string
   brand: string
   image_url: string
   gallery_images: string[]
-  sizes: string[]
+  sizes: ProductSize[] // 2. CHANGE THIS from string[] to ProductSize[]
   ingredients: string[]
   notes: {
     top: string[]
