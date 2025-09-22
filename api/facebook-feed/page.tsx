@@ -18,7 +18,7 @@ const PaymentIcons = {
       <text x="12" y="16" textAnchor="middle" fontSize="10" fill="#b91c1c">VC</text>
     </svg>
   ),
-  instapay: (
+  layo: (
     <svg className="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
       <rect x="4" y="4" width="16" height="16" rx="4" fill="#dbeafe" />
       <text x="12" y="16" textAnchor="middle" fontSize="10" fill="#1d4ed8">IP</text>
@@ -40,7 +40,7 @@ export default function CheckoutPage() {
     apartment: "",
     notes: "",
   })
-  const [paymentMethod, setPaymentMethod] = useState("cod") // cod, vodacash, instapay
+  const [paymentMethod, setPaymentMethod] = useState("cod") // cod, vodacash, layo
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
 
@@ -69,9 +69,9 @@ Floor: ${form.floor}
 Apartment: ${form.apartment}
 Notes: ${form.notes}
 
-Payment Method: ${paymentMethod === "cod" ? "Cash On Delivery" : paymentMethod === "vodacash" ? "Vodacash" : "Instapay"}
+Payment Method: ${paymentMethod === "cod" ? "Cash On Delivery" : paymentMethod === "vodacash" ? "Vodacash" : "layo"}
 ${paymentMethod === "vodacash" ? "Vodacash Number: 01001234567" : ""}
-${paymentMethod === "instapay" ? "Instapay Number:  01023461614" : ""}
+${paymentMethod === "layo" ? "layo Number:  01023461614" : ""}
 
 Cart:
 ${items.map(item => 
@@ -263,7 +263,7 @@ ${items.map(item =>
                 {[
                   { value: "cod", label: "Cash on Delivery", icon: PaymentIcons.cod },
                   { value: "vodacash", label: "Vodacash", icon: PaymentIcons.vodacash, phone: "01001234567", color: "border-red-400" },
-                  { value: "instapay", label: "Instapay", icon: PaymentIcons.instapay, phone: "01007654321", color: "border-blue-400" },
+                  { value: "layo", label: "layo", icon: PaymentIcons.layo, phone: "01007654321", color: "border-blue-400" },
                 ].map((method) => (
                   <label
                     key={method.value}
@@ -296,7 +296,7 @@ ${items.map(item =>
                     Send to: <span className="font-semibold">01023299187</span>
                   </div>
                 )}
-                {paymentMethod === "instapay" && (
+                {paymentMethod === "layo" && (
                   <div className="text-center text-sm text-gray-700 bg-blue-50 p-2 rounded">
                     Send to: <span className="font-semibold">01023461614</span>
                   </div>
