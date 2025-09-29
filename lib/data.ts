@@ -196,17 +196,16 @@ export const fallbackProducts: Product[] = [
 
 export const products: Product[] = []
 export const featuredProducts: Product[] = []
-
 export async function getProducts(): Promise<Product[]> {
   try {
     const supabase = await createClient()
-    const { data, error } = await supabase.from("products").select("*").order("created_at", { ascending: false })
+    // UPDATED TABLE NAME:
+    const { data, error } = await supabase.from("products_detailed").select("*").order("created_at", { ascending: false })
 
     if (error) {
       console.error("Error fetching products:", error)
       return fallbackProducts
     }
-
     return data || fallbackProducts
   } catch (error) {
     console.error("Supabase connection failed:", error)
@@ -217,8 +216,9 @@ export async function getProducts(): Promise<Product[]> {
 export async function getFeaturedProducts(): Promise<Product[]> {
   try {
     const supabase = await createClient()
+    // UPDATED TABLE NAME:
     const { data, error } = await supabase
-      .from("products")
+      .from("products_detailed") 
       .select("*")
       .eq("featured", true)
       .order("created_at", { ascending: false })
@@ -227,7 +227,6 @@ export async function getFeaturedProducts(): Promise<Product[]> {
       console.error("Error fetching featured products:", error)
       return fallbackProducts.filter((p) => p.featured)
     }
-
     return data || fallbackProducts.filter((p) => p.featured)
   } catch (error) {
     console.error("Supabase connection failed:", error)
@@ -238,40 +237,43 @@ export async function getFeaturedProducts(): Promise<Product[]> {
 export async function getProductBySlug(slug: string): Promise<Product | null> {
   try {
     const supabase = await createClient()
-    const { data, error } = await supabase.from("products").select("*").eq("slug", slug).maybeSingle()
+    // UPDATED TABLE NAME:
+    const { data, error } = await supabase.from("products_detailed").select("*").eq("slug", slug).maybeSingle()
 
     if (error) {
       console.error("Error fetching product:", error)
       return fallbackProducts.find((p) => p.slug === slug) || null
     }
-
     return data || fallbackProducts.find((p) => p.slug === slug) || null
   } catch (error) {
     console.error("Supabase connection failed, using fallback data:", error)
     return fallbackProducts.find((p) => p.slug === slug) || null
   }
 }
-
 export async function getProductsByCategory(categorySlug: string): Promise<Product[]> {
   try {
     const supabase = await createClient()
     const { data, error } = await supabase
-      .from("products")
+      .from("products_detailed") // Ensure this is the correct table name
       .select("*")
       .eq("category", categorySlug)
       .order("created_at", { ascending: false })
 
     if (error) {
       console.error("Error fetching products by category:", error)
-      return fallbackProducts.filter((p) => p.category === categorySlug)
+      return [] // Return empty array on error
     }
 
-    return data || fallbackProducts.filter((p) => p.category === categorySlug)
+    return data || []
   } catch (error) {
     console.error("Supabase connection failed:", error)
-    return fallbackProducts.filter((p) => p.category === categorySlug)
+    return []
   }
 }
+
+// ... and so on for any other fetching functions ...
+
+// --- END OF UPDATES ---
 
 export const getAllProducts = getProducts
 

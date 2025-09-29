@@ -14,6 +14,7 @@ export interface Product {
   insp: string
   price: number // This acts as the default/base price
   category: string
+  thumbnail_url?: string // <-- ADD THIS LINE
   brand: string
   image_url: string
   gallery_images: string[]
@@ -29,6 +30,7 @@ export interface Product {
   created_at: string
   updated_at: string
 }
+export type SortOption = "name" | "price-low" | "price-high" | "newest";
 
 export interface SizeOption {
   size: string
