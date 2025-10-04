@@ -31,7 +31,7 @@ export default async function HomepageAdminPage() {
         {/* --- Hero Section --- */}
         <div className="space-y-8 py-8">
           <div>
-            <h2 className="text-xl font-semibold text-gray-900">Hero Section</h2>
+            <h2 className="text-xl font-semibold text-gray-900">Hero Section e</h2>
             <p className="mt-1 text-sm text-gray-500">Update the main banner on your homepage.</p>
           </div>
           
