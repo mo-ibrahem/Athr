@@ -17,6 +17,8 @@ export interface Product {
   thumbnail_url?: string // <-- ADD THIS LINE
   brand: string
   image_url: string
+    original_price?: number // <-- ADD THIS LINE
+
   gallery_images: string[]
   sizes: ProductSize[] // 2. CHANGE THIS from string[] to ProductSize[]
   ingredients: string[]

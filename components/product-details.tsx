@@ -13,15 +13,11 @@ interface ProductDetailsProps {
 export function ProductDetails({ product }: ProductDetailsProps) {
   const router = useRouter()
   
-  // With correct types, this logic is now simple and safe.
   const [selectedSize, setSelectedSize] = useState(product.sizes[0].size)
   const [quantity, setQuantity] = useState(1)
   const [isAddingToCart, setIsAddingToCart] = useState(false)
   const [isBuyingNow, setIsBuyingNow] = useState(false)
   const { addItem } = useCart()
-
-  // This is now much simpler and more reliable.
-  const currentPrice = product.sizes.find(s => s.size === selectedSize)?.price || product.price;
 
   // META PIXEL EVENT: ViewContent
   useEffect(() => {
@@ -30,11 +26,11 @@ export function ProductDetails({ product }: ProductDetailsProps) {
         content_type: 'product',
         content_ids: [product.id],
         content_name: product.name,
-        value: currentPrice,
+        value: product.price,
         currency: 'EGP',
       });
     }
-  }, [product, currentPrice]);
+  }, [product]);
 
   const handleAddToCart = async () => {
     setIsAddingToCart(true)
@@ -45,7 +41,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
         content_type: 'product',
         content_ids: [product.id],
         content_name: product.name,
-        value: currentPrice * quantity,
+        value: product.price * quantity,
         currency: 'EGP',
       });
     }
@@ -62,7 +58,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
           content_type: 'product',
           content_ids: [product.id],
           content_name: product.name,
-          value: currentPrice * quantity,
+          value: product.price * quantity,
           currency: 'EGP',
         });
       }
@@ -84,9 +80,34 @@ export function ProductDetails({ product }: ProductDetailsProps) {
           <p className="text-sm text-gray-800 font-medium leading-relaxed">{product.insp}</p>
         </div>
 
-        <div className="flex items-center gap-4">
-          <span className="text-xl font-light text-black">{formatPrice(currentPrice)}</span>
+        {/* --- START OF CHANGE --- */}
+        <div className="space-y-3">
+          {/* Price Display */}
+          <div className="flex items-baseline gap-4">
+            {product.original_price && product.original_price > product.price ? (
+              <>
+                <span className="text-2xl  text-red-600">
+                  {formatPrice(product.price)}
+                </span>
+                <span className="text-xl text-gray-400 line-through">
+                  {formatPrice(product.original_price)}
+                </span>
+              </>
+            ) : (
+              <span className="text-2xl font-bold text-gray-900">
+                {formatPrice(product.price)}
+              </span>
+            )}
+          </div>
+          
+          {/* 50ml Size Box */}
+          <div>
+            <div className="inline-block px-3 py-1 text-md  text-gray-700 border border-gray-200 ">
+              50ml
+            </div>
+          </div>
         </div>
+        {/* --- END OF CHANGE --- */}
 
         <div className="flex items-center gap-2">
           {product.in_stock ? (

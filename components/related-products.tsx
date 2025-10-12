@@ -42,8 +42,7 @@ export function RelatedProducts({ products }: RelatedProductsProps) {
               <div className="flex items-center justify-between">
                 <div className="space-y-1">
                   <div className="flex items-center gap-2">
-                    <span className="font-bold text-foreground">{formatPrice(product.price)}</span>
-                  </div>
+<span className="font-bold text-foreground">{formatPrice(product.price - 100)}</span>                  </div>
                 </div>
 
                 <Button size="sm" className="bg-amber-600 hover:bg-amber-700">

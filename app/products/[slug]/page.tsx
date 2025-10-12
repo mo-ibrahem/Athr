@@ -10,17 +10,20 @@ import { getProductBySlug, getProductsByCategory } from "@/lib/data"
 import { PageTransition } from "@/components/page-transition"
 
 import type { Metadata } from 'next';
-import { fallbackProducts } from "@/lib/data";
+import type { Product } from "@/lib/types"
 
+// --- 1. Updated Metadata Function for Live Data & Sale Price ---
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const product = fallbackProducts.find(p => p.slug === params.slug);
+  // Fetch the live product data instead of using fallback data
+  const product = await getProductBySlug(params.slug);
 
   if (!product) {
     return { title: "Product not found" };
   }
 
-  // Create the openGraph object in a separate variable
-  // This satisfies TypeScript while allowing custom properties
+  // Calculate the sale price for metadata
+  const salePrice = product.price > 100 ? product.price - 100 : product.price;
+
   const openGraphData = {
     title: product.name,
     description: product.description,
@@ -30,7 +33,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     'product:brand': product.brand,
     'product:availability': product.in_stock ? 'in stock' : 'out of stock',
     'product:condition': 'new',
-    'product:price:amount': product.price.toString(),
+    'product:price:amount': salePrice.toString(), // Use the calculated sale price
     'product:price:currency': 'EGP',
   };
 
@@ -54,8 +57,25 @@ export default async function ProductPage({ params }: ProductPageProps) {
     notFound()
   }
 
+  // --- 2. Function to Apply the Discount ---
+  const applyDiscount = (p: Product): Product => {
+    // Only apply discount if the price is greater than 100
+    if (p.price > 100) {
+      return {
+        ...p,
+        original_price: p.price, // Store the database price as the original price
+        price: p.price - 100,    // Set the new, discounted price
+      };
+    }
+    return p; // Return the product unchanged if no discount is applied
+  };
+
+  // --- 3. Apply Discount to Main and Related Products ---
+  const productWithDiscount = applyDiscount(product);
+  
   const allCategoryProducts = await getProductsByCategory(product.category)
   const relatedProducts = allCategoryProducts.filter((p) => p.id !== product.id).slice(0, 4)
+  const relatedProductsWithDiscount = relatedProducts.map(applyDiscount);
 
   return (
     <PageTransition>
@@ -69,10 +89,11 @@ export default async function ProductPage({ params }: ProductPageProps) {
           <div className="container px-4 max-content-width">
             <div className="grid lg:grid-cols-2 gap-16">
               <SlideIn direction="left" delay={0.1}>
-                <ProductGallery product={product} />
+                {/* 4. Pass the new discounted product objects to the components */}
+                <ProductGallery product={productWithDiscount} />
               </SlideIn>
               <SlideIn direction="right" delay={0.2}>
-                <ProductDetails product={product} />
+                <ProductDetails product={productWithDiscount} />
               </SlideIn>
             </div>
           </div>
@@ -83,7 +104,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
           <FadeIn delay={0.4}>
             <section className="py-16 border-t border-gray-100">
               <div className="container px-4 max-content-width">
-                <RelatedProducts products={relatedProducts} />
+                <RelatedProducts products={relatedProductsWithDiscount} />
               </div>
             </section>
           </FadeIn>
